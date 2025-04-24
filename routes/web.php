@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalculosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,3 +14,5 @@ Route::get('/teste', function () {
 Route::get('/teste', function ($valor) {
     return "Você digitou:($valor)";
 });
+
+Route::get('/calc/somar/{x}/{y}', [CalculosController::class, 'somar']);
