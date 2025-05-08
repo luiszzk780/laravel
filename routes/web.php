@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalculosController;
+use App\Http\Controllers\Empresa;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +17,8 @@ Route::get('/teste', function ($valor) {
 });
 
 Route::get('/calc/somar/{x}/{y}', [CalculosController::class, 'somar']);
+
+
+Route::get('/funcionario', [Empresa::class, 'index']);
+
+Route::post('/funcionario', [Empresa::class, 'gravar']);
