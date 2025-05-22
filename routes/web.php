@@ -22,3 +22,4 @@ Route::get('/calc/somar/{x}/{y}', [CalculosController::class, 'somar']);
 Route::get('/funcionario', [Empresa::class, 'index']);
 
 Route::post('/funcionario', [Empresa::class, 'gravar']);
+
