@@ -104,44 +104,43 @@
             </div>
     @endif
     {{-- Verifica se há usuários para listar --}}
-    @if ($users->count() > 0)
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{-- Loop para percorrer cada usuário da lista $users --}}
-                @foreach ($users as $user)
-                                <tr>
-                                    <td>{{ $user->id }}</td> {{-- Mostra o ID do usuário --}}
-                                    <td>{{ $user->name }}</td> {{-- Mostra o Nome do usuário --}}
-                                    <td>{{ $user->email }}</td> {{-- Mostra o Email do usuário --}}
-                                    <td class="actions">
-                                        {{-- Link para editar o usuário. Chamamos a rota 'users.edit' passando o ID do
-                                        usuário --}}
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-edit">Editar</a>
-                                        {{-- Formulário para deletar o usuário. Chamamos a rota 'users.destroy' --}}
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                            @csrf {{-- Token de segurança do Laravel, muito importante para formulários
-                                            POST, PUT, DELETE --}}
-                                            @method('DELETE') {{-- Informa ao Laravel que, apesar de ser um POST, o
-                                            método HTTP real é DELETE --}}
-                                            <button type="submit" class="btn btn-delete" onclick="return confirm('Tem
-                    certeza que deseja deletar este usuário?')">Deletar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>Nenhum usuário cadastrado ainda.</p>
-    @endif
+ @if ($users->count() > 0)
+<table>
+<thead>
+<tr>
+<th>ID</th>
+ <th>Nome</th>
+<th>Email</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody>
+{{-- Loop para percorrer cada usuário da lista $users --}}
+@foreach ($users as $user)
+<tr>
+<td>{{ $user->id }}</td> {{-- Mostra o ID do usuário --}}
+<td>{{ $user->name }}</td> {{-- Mostra o Nome do usuário --}}
+<td>{{ $user->email }}</td> {{-- Mostra o Email do usuário --}}
+<td class="actions">
+{{-- Link para editar o usuário. Chamamos a rota 'users.edit' passando o ID do
+ usuário --}}
+<a href="{{ route('users.edit', $user->id) }}" class="btn btn-edit">Editar</a>
+{{-- Formulário para deletar o usuário. Chamamos a rota 'users.destroy' --}}
+ <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+@csrf {{-- Token de segurança do Laravel, muito importante para formulários
+POST, PUT, DELETE --}}
+@method('DELETE') {{-- Informa ao Laravel que, apesar de ser um POST, o
+método HTTP real é DELETE --}}
+<button type="submit" class="btn btn-delete" onclick="return confirm('Temcerteza que deseja deletar este usuário?')">Deletar</button>
+</form>
+</td>
+</tr>
+@endforeach
+</tbody>
+</table>
+@else
+<p>Nenhum usuário cadastrado ainda.</p>
+@endif
 </body>
 
 </html>
